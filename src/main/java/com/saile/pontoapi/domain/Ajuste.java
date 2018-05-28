@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ajuste {
     @Id
     private String id;
+    private String usuarioId;
     private String periodo;
     private Boolean alerta;
     private Boolean localizacao;

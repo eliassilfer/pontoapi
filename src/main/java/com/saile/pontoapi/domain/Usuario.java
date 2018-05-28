@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Usuario {
     @Id
     private String id;
-    private String login;
+    private String nome;
+    private String email;
     private String senha;
 }

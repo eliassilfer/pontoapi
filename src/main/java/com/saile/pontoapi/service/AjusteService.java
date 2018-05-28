@@ -12,19 +12,18 @@ import reactor.core.publisher.Mono;
 public class AjusteService {
     private final AjusteRepository ajusteRepository;
 
-    public Flux<Ajuste> all() {
-        return ajusteRepository.findAll();
+    public Mono<Ajuste> porUsuario(String id) {
+        return ajusteRepository.findByUsuarioId(id);
     }
 
-    public Mono<Ajuste> byId(String id) {
-        return ajusteRepository.findById(id);
-    }
-
-    public Mono<Ajuste> save(Ajuste ajuste) {
+    public Mono<Ajuste> salvar(Ajuste ajuste) {
         return ajusteRepository.save(ajuste);
     }
 
-    public Mono<Ajuste> update(Ajuste ajuste) {
-        return ajusteRepository.save(ajuste);
+    public Mono<Ajuste> alterar(Ajuste ajuste) {
+        if (ajusteRepository.existsById(ajuste.getId()).block()) {
+            return ajusteRepository.save(ajuste);
+        }
+        return null;
     }
 }

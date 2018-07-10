@@ -2,6 +2,7 @@ package com.saile.pontoapi.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -11,8 +12,10 @@ import java.time.LocalDateTime;
 public class Justificativa {
     @Id
     private String id;
-    private String usuarioId;
-    private String responsavelId;
+    @DBRef
+    private Usuario usuario;
+    @DBRef
+    private Usuario responsavel;
     private String descricao;
     private LocalDateTime dataHora;
 }

@@ -23,9 +23,7 @@ public class MarcacaoService {
     }
 
     public Mono<Marcacao> alterar(Marcacao marcacao) {
-        if (marcacaoRepository.existsById(marcacao.getId()).block()) {
-            return marcacaoRepository.save(marcacao);
-        }
-        return null;
+        return Mono.just(marcacaoRepository.existsById(marcacao.getId()))
+                .flatMap(p -> marcacaoRepository.save(marcacao));
     }
 }

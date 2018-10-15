@@ -2,6 +2,7 @@ package com.saile.pontoapi.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,6 +16,7 @@ public class Marcacao {
     @DBRef
     private Usuario usuario;
     private String tipo;
+    @LastModifiedDate
     private LocalDateTime dataHora;
     private String descricao;
     private Double latitude;

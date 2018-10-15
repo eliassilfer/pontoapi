@@ -21,9 +21,7 @@ public class JustificativaService {
     }
 
     public Mono<Justificativa> alterar(Justificativa justificativa) {
-        if (justificativaRepository.existsById(justificativa.getId()).block()) {
-            return justificativaRepository.save(justificativa);
-        }
-        return null;
+        return justificativaRepository.existsById(justificativa.getId())
+                .flatMap(exists -> justificativaRepository.save(justificativa));
     }
 }

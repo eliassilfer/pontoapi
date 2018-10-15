@@ -20,9 +20,7 @@ public class UsuarioService {
     }
 
     public Mono<Usuario> alterar(Usuario usuario) {
-        if (usuarioRepository.existsById(usuario.getId()).block()) {
-            return usuarioRepository.save(usuario);
-        }
-        return null;
+        return usuarioRepository.existsById(usuario.getId())
+                .flatMap(exists -> usuarioRepository.save(usuario));
     }
 }

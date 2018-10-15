@@ -21,9 +21,7 @@ public class AjusteService {
     }
 
     public Mono<Ajuste> alterar(Ajuste ajuste) {
-        if (ajusteRepository.existsById(ajuste.getId()).block()) {
-            return ajusteRepository.save(ajuste);
-        }
-        return null;
+        return ajusteRepository.existsById(ajuste.getId())
+            .flatMap(exists -> ajusteRepository.save(ajuste));
     }
 }
